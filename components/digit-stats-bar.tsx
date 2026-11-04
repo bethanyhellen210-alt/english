@@ -30,9 +30,9 @@ export function DigitStatsBar({
   const rankClass = (pct: number) => {
     if (!hasData || distinct.length < 2) return 'bg-muted text-muted-foreground border-border';
     if (pct === high) return 'bg-emerald-500 text-white border-emerald-600';
-    if (pct === secondHigh) return 'bg-blue-500 text-white border-blue-600';
+    if (distinct.length >= 4 && pct === secondHigh) return 'bg-blue-500 text-white border-blue-600';
     if (pct === low) return 'bg-red-500 text-white border-red-600';
-    if (pct === secondLow) return 'bg-amber-400 text-slate-950 border-amber-500';
+    if (distinct.length >= 4 && pct === secondLow) return 'bg-amber-400 text-slate-950 border-amber-500';
     return 'bg-muted text-foreground border-border';
   };
 
@@ -74,10 +74,10 @@ export function DigitStatsBar({
               <span className={cn(
                 'font-mono text-[11px] sm:text-xs',
                 hasData && pct === high && 'text-emerald-600 dark:text-emerald-400 font-bold',
-                hasData && pct === secondHigh && 'text-blue-600 dark:text-blue-400 font-bold',
+                hasData && distinct.length >= 4 && pct === secondHigh && 'text-blue-600 dark:text-blue-400 font-bold',
                 hasData && pct === low && 'text-red-600 dark:text-red-400 font-bold',
-                hasData && pct === secondLow && 'text-amber-600 dark:text-amber-400 font-bold',
-                (!hasData || (pct !== high && pct !== secondHigh && pct !== low && pct !== secondLow)) && 'text-muted-foreground',
+                hasData && distinct.length >= 4 && pct === secondLow && 'text-amber-600 dark:text-amber-400 font-bold',
+                (!hasData || (pct !== high && (distinct.length < 4 || pct !== secondHigh) && pct !== low && (distinct.length < 4 || pct !== secondLow))) && 'text-muted-foreground',
               )}>
                 {pct.toFixed(1)}%
               </span>
