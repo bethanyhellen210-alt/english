@@ -14,6 +14,7 @@ import { useIsMobile } from '@/hooks/use-is-mobile';
 import { useAppTranslations } from '@/components/custom/i18n-provider';
 import { CurrentTickDisplay } from './current-tick-display';
 import { DigitStatsBar } from './digit-stats-bar';
+import { OutcomeStats } from './outcome-stats';
 import { TradeControls } from './trade-controls';
 import { ConfigurableDigitsControls, ConfigurableBuyButton } from './configurable-digits-controls';
 import { TradeTypeChips } from '@/components/custom/trade-type-chips';
@@ -82,6 +83,7 @@ export interface DigitsViewProps {
   currentTick: Tick | null;
   lastDigit: number | null;
   digitStats: DigitStats;
+  prices: number[];
   pipSize: number;
 
   // Trade controls
@@ -143,6 +145,7 @@ export function DigitsView({
   currentTick,
   lastDigit,
   digitStats,
+  prices,
   pipSize,
   tradeType,
   setTradeType,
@@ -294,6 +297,7 @@ export function DigitsView({
   // instance to one desktop column; omitted, it renders every block.
   const renderConfigurable = (keys?: ControlKey[], showPositionsLink?: boolean) =>
     appConfig ? (
+      <>
       <ConfigurableDigitsControls
         config={appConfig}
         keys={keys}
@@ -329,6 +333,8 @@ export function DigitsView({
         onReorder={onReorder}
         pinBuy={pinBuy}
       />
+      <OutcomeStats digitStats={digitStats} prices={prices} selectedDigit={selectedDigit} />
+      </>
     ) : null;
 
   return (
@@ -448,7 +454,8 @@ export function DigitsView({
                   </div>
 
                   <div className="border-t divide-y divide-border">
-                    {/* Digit stats — hidden for Even/Odd */}
+                    <OutcomeStats digitStats={digitStats} prices={prices} selectedDigit={selectedDigit} />
+                  {/* Digit stats — hidden for Even/Odd */}
                     {tradeType !== 'even-odd' && (
                       <div className="py-4 sm:py-6">
                         <DigitStatsBar
@@ -459,6 +466,7 @@ export function DigitsView({
                         />
                       </div>
                     )}
+                    <div className="py-3"><OutcomeStats digitStats={digitStats} prices={prices} selectedDigit={selectedDigit} /></div>
 
                     {/* Trade controls */}
                     <div className="pt-4 sm:pt-6">
