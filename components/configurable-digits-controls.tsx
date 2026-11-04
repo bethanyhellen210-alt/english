@@ -482,6 +482,7 @@ export function ConfigurableDigitsControls(props: ConfigurableDigitsControlsProp
       a: () => (
         <DigitStatsBar
           digitStats={digitStats}
+          latestDigit={lastDigit}
           selectedDigit={selectedDigit}
           onDigitSelect={onDigitSelect}
         />
