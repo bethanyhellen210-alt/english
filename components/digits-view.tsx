@@ -453,6 +453,7 @@ export function DigitsView({
                       <div className="py-4 sm:py-6">
                         <DigitStatsBar
                           digitStats={digitStats}
+                          latestDigit={lastDigit}
                           selectedDigit={selectedDigit}
                           onDigitSelect={setSelectedDigit}
                         />
@@ -522,6 +523,7 @@ export function DigitsView({
                   {tradeType !== 'even-odd' && (
                     <DigitStatsBar
                       digitStats={digitStats}
+                          latestDigit={lastDigit}
                       selectedDigit={selectedDigit}
                       onDigitSelect={setSelectedDigit}
                     />
