@@ -69,6 +69,7 @@ export function LiveDigits({
       currentTick={trading.currentTick}
       lastDigit={trading.lastDigit}
       digitStats={trading.digitStats}
+      prices={trading.prices}
       pipSize={trading.pipSize}
       tradeType={trading.tradeType}
       setTradeType={trading.setTradeType}
