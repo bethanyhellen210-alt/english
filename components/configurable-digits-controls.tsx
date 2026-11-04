@@ -892,6 +892,14 @@ export function ConfigurableDigitsControls(props: ConfigurableDigitsControlsProp
     buy: renderBuy,
   };
 
+  // The deployed analysis view hides purchase-only inputs and prediction/payout copy.
+  // Keep the blocks available in edit mode so the builder remains usable.
+  if (!editMode) {
+    renderers.stake = () => null;
+    renderers.duration = () => null;
+    renderers.prediction = () => null;
+  }
+
   // Filtering config.order (not iterating `keys`) keeps the configured
   // relative order authoritative inside a filtered column.
   const orderedKeys = keys ? config.order.filter((key) => keys.includes(key)) : config.order;
