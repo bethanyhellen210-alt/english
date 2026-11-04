@@ -454,7 +454,6 @@ export function DigitsView({
                   </div>
 
                   <div className="border-t divide-y divide-border">
-                    <OutcomeStats digitStats={digitStats} prices={prices} selectedDigit={selectedDigit} />
                   {/* Digit stats — hidden for Even/Odd */}
                     {tradeType !== 'even-odd' && (
                       <div className="py-4 sm:py-6">
@@ -527,6 +526,7 @@ export function DigitsView({
                       pipSize={pipSize}
                     />
                   </div>
+                  <OutcomeStats digitStats={digitStats} prices={prices} selectedDigit={selectedDigit} />
                   {/* Digit stats — hidden for Even/Odd */}
                   {tradeType !== 'even-odd' && (
                     <DigitStatsBar
