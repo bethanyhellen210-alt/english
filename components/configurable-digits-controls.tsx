@@ -143,11 +143,7 @@ export function ConfigurableBuyButton({
   const { localize } = useAppTranslations();
 
   const disabled = !isConnected || !proposal || isBuying;
-  const label = isBuying
-    ? localize('Purchasing...')
-    : proposal
-      ? localize('Buy @ {{price}} USD', { price: proposal.askPrice.toFixed(2) })
-      : localize('Buy Contract');
+  const label = isBuying ? localize('Purchasing...') : localize('Buy Contract');
 
   const variants: Record<StyleVariant, () => React.ReactNode> = {
     // a — pill (current)
