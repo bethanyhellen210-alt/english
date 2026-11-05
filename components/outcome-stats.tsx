@@ -58,9 +58,6 @@ export function OutcomeStats({ digitStats, prices, selectedDigit }: { digitStats
   return (
     <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
       {pairs.map(({ title, pair }) => <PairRow key={title} title={title} pair={pair} />)}
-      <p className="sm:col-span-3 text-[10px] leading-relaxed text-muted-foreground">
-        Calculated from received ticks. Over/Under excludes ticks equal to the selected barrier; Rise/Fall excludes unchanged prices. Percentages describe recent history, not guaranteed future outcomes.
-      </p>
     </div>
   );
 }
